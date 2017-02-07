@@ -1,0 +1,20 @@
+{
+  "index.html": {
+    "resources": [
+      "images/20160427104247.jpg",
+      "php/fa.php",
+      "font-awesome-4.5.0/css/font-awesome.min.css",
+      "iscroll-master/build/iscroll.js",
+      "css/swiper.min.css",
+      "css/style.css",
+      "font-awesome-4.5.0/fonts/fontawesome-webfont.woff2",
+      "js/swiper-3.3.1.min.js",
+      "js/zepto.js",
+      "js/index.js",
+      "php/Jguan.php",
+      "php/Zguan.php",
+      "php/AtN.php",
+      "php/FanN.php"
+    ]
+  }
+}
