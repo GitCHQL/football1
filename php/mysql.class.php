@@ -1,13 +1,24 @@
 <?php
 class mysql{
+	private $con;
+	private $dbhost='localhost';
+     private $dbuser='root';
+     private $dbpwd='root';
+
+	function __construct($databaseName){
+		 $this->con=mysql_connect($this->dbhost,$this->dbuser,$this->dbpwd);    
+        if(!$this->con){    
+            die("连接失败！");    
+        }   
+        mysql_select_db($databaseName,$this->con);    
+        mysql_query("set names utf8;");    
+	}
 	/**
 	 * [报错函数]
 	 * @param  [type] $error [description]
 	 * @return [type]        [description]
 	 */
-     public $dbhost='localhost';
-     public $dbuser='root';
-     public $dbpwd='root';
+     
 	function err($error){
 		die("对不起操作有误：".$error);
 	
@@ -62,16 +73,20 @@ class mysql{
 		return $rs;
 	}
 	function findResult($query,$row=0,$field=0){
-		$rs=mysql_result($query, $row, $field)
+		$rs=mysql_result($query, $row, $field);
 		return $rs;
 	}
 
+    function __destruct(){  
+        mysql_close($this->con);    
+    }  
 
 }
-$mysql1 = new mysql();
-$mysql1->connect('football');
-echo $mysql1->query('select *from user');
-$rss=$mysql1->findResult($mysql1->query('select *from user'),0,0);
-echo $rss;
-?>
 
+
+
+$mysql1 = new mysql('football');
+//echo $mysql1->query('select *from user');
+$rss=$mysql1->findOne($mysql1->query('select *from user'),0,0);
+$s2=implode(',', $rss);
+echo $s2;
